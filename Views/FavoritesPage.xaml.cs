@@ -7,7 +7,7 @@ public partial class FavoritesPage : ContentPage
         InitializeComponent();
     }
 
-    private async void OnGoToLoginClicked(object sender, TappedEventArgs e)
+    private async void OnGoToAuthClicked(object sender, TappedEventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(AuthPage));
     }

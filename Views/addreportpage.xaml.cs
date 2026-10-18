@@ -13,7 +13,7 @@ public partial class AddReportPage : ContentPage
         await Shell.Current.GoToAsync(nameof(HistoryPage));
     }
 
-    private async void OnGoToLoginClicked(object sender, TappedEventArgs e)
+    private async void OnGoToAuthClicked(object sender, TappedEventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(AuthPage));
     }

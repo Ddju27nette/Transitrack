@@ -5,22 +5,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:transitrack.Views"
     Shell.NavBarIsVisible="False"
-    Shell.TabBarBackgroundColor="#FFFFFF"
-    Shell.TabBarTitleColor="#0F766E"
-    Shell.TabBarUnselectedColor="#94A3B8">
+    Shell.TabBarBackgroundColor="#F7F3E7"
+    Shell.TabBarForegroundColor="#0F3C39"
+    Shell.TabBarTitleColor="#0F3C39"
+    Shell.TabBarUnselectedColor="#7A8A85"
+    BackgroundColor="#F7F3E7">
 
     <TabBar>
-        <Tab Title="Accueil">
-            <ShellContent ContentTemplate="{DataTemplate views:HomeStopsPage}" />
+        <Tab Title="Accueil" Icon="dotnet_bot.png">
+            <ShellContent Route="HomeStopsPage" ContentTemplate="{DataTemplate views:HomeStopsPage}" />
         </Tab>
-        <Tab Title="Favoris">
-            <ShellContent ContentTemplate="{DataTemplate views:FavoritesPage}" />
+        <Tab Title="Favoris" Icon="dotnet_bot.png">
+            <ShellContent Route="FavoritesPage" ContentTemplate="{DataTemplate views:FavoritesPage}" />
         </Tab>
-        <Tab Title="Signaler">
-            <ShellContent ContentTemplate="{DataTemplate views:AddReportPage}" />
+        <Tab Title="Signaler" Icon="dotnet_bot.png">
+            <ShellContent Route="AddReportPage" ContentTemplate="{DataTemplate views:AddReportPage}" />
         </Tab>
-        <Tab Title="Profil">
-            <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" />
+        <Tab Title="Profil" Icon="dotnet_bot.png">
+            <ShellContent Route="ProfilePage" ContentTemplate="{DataTemplate views:ProfilePage}" />
         </Tab>
     </TabBar>
 </Shell>

@@ -12,9 +12,4 @@ public partial class HomeStopsPage : ContentPage
         string stopName = e.Parameter as string ?? "Rond-point Deïdo";
         await Shell.Current.GoToAsync($"{nameof(StopDetailPage)}?StopName={Uri.EscapeDataString(stopName)}");
     }
-
-    private async void OnGoToLoginClicked(object sender, TappedEventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(AuthPage));
-    }
 }

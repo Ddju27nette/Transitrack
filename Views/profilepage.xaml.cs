@@ -9,10 +9,6 @@ public partial class ProfilePage : ContentPage
 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
-        bool confirm = await DisplayAlert("Déconnexion", "Voulez-vous retourner à la page de connexion ?", "Oui", "Annuler");
-        if (confirm)
-        {
-            await Shell.Current.GoToAsync(nameof(AuthPage));
-        }
+        await Shell.Current.GoToAsync(nameof(AuthPage));
     }
 }

@@ -2,20 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="transitrack.Views.FavoritesPage"
-             BackgroundColor="#F8FAFC">
+             BackgroundColor="#F6F1E4">
 
     <Grid RowDefinitions="Auto, *">
 
-        <!-- Barre de titre -->
+        <!-- Barre de titre Figma -->
         <Border Grid.Row="0" BackgroundColor="#FFFFFF" StrokeThickness="0" Padding="18,20,18,16">
             <Label Text="Favoris" FontSize="22" FontAttributes="Bold" TextColor="#0F172A" />
         </Border>
 
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout Spacing="14" Padding="16,14,16,28">
+            <VerticalStackLayout Spacing="14" Padding="16,16,16,28">
 
                 <!-- Favori 1 : Rond-point Deïdo -->
-                <Border Stroke="#E2E8F0" StrokeThickness="1" StrokeShape="RoundRectangle 14" BackgroundColor="#FFFFFF" Padding="16">
+                <Border Stroke="#E2E8F0" StrokeThickness="1" StrokeShape="RoundRectangle 12" BackgroundColor="#FFFFFF" Padding="16">
                     <VerticalStackLayout Spacing="10">
                         <Grid ColumnDefinitions="*, Auto">
                             <Label Text="Rond-point Deïdo" FontSize="15" FontAttributes="Bold" TextColor="#0F172A" />
@@ -41,7 +41,7 @@
                 </Border>
 
                 <!-- Favori 2 : Place du Gouvernement, Bonanjo -->
-                <Border Stroke="#E2E8F0" StrokeThickness="1" StrokeShape="RoundRectangle 14" BackgroundColor="#FFFFFF" Padding="16">
+                <Border Stroke="#E2E8F0" StrokeThickness="1" StrokeShape="RoundRectangle 12" BackgroundColor="#FFFFFF" Padding="16">
                     <VerticalStackLayout Spacing="10">
                         <Grid ColumnDefinitions="*, Auto">
                             <Label Text="Place du Gouvernement, Bonanjo" FontSize="15" FontAttributes="Bold" TextColor="#0F172A" />
@@ -69,7 +69,7 @@
                 </Border>
 
                 <!-- Favori 3 : Carrefour Akwa -->
-                <Border Stroke="#E2E8F0" StrokeThickness="1" StrokeShape="RoundRectangle 14" BackgroundColor="#FFFFFF" Padding="16">
+                <Border Stroke="#E2E8F0" StrokeThickness="1" StrokeShape="RoundRectangle 12" BackgroundColor="#FFFFFF" Padding="16">
                     <VerticalStackLayout Spacing="10">
                         <Grid ColumnDefinitions="*, Auto">
                             <Label Text="Carrefour Akwa" FontSize="15" FontAttributes="Bold" TextColor="#0F172A" />
@@ -87,19 +87,19 @@
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- Astuce Figma en bas de page -->
-                <VerticalStackLayout Spacing="4" HorizontalOptions="Center" Margin="0,10,0,0">
+                <!-- Mention d'aide Figma -->
+                <VerticalStackLayout Spacing="2" HorizontalOptions="Center" Margin="0,8,0,0">
                     <Label Text="Ajoutez un arrêt depuis sa fiche" FontSize="12" TextColor="#64748B" HorizontalOptions="Center" />
                     <Label Text="avec l'étoile ★" FontSize="12" TextColor="#64748B" HorizontalOptions="Center" />
                 </VerticalStackLayout>
 
                 <!-- Bannière connexion -->
-                <Border BackgroundColor="#F0FDFA" Stroke="#CCFBF1" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="14">
+                <Border BackgroundColor="#F0FDFA" Stroke="#CCFBF1" StrokeThickness="1" StrokeShape="RoundRectangle 10" Padding="14">
                     <Grid ColumnDefinitions="*, Auto">
                         <Label Text="Connectez-vous pour synchroniser vos favoris" FontSize="12" TextColor="#0F766E" VerticalOptions="Center" />
                         <Label Grid.Column="1" Text="Se connecter →" FontSize="12" FontAttributes="Bold" TextColor="#0F766E" VerticalOptions="Center">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnGoToLoginClicked" />
+                                <TapGestureRecognizer Tapped="OnGoToAuthClicked" />
                             </Label.GestureRecognizers>
                         </Label>
                     </Grid>
