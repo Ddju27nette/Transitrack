@@ -4,17 +4,23 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:transitrack.Views"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarBackgroundColor="#FFFFFF"
+    Shell.TabBarTitleColor="#0F766E"
+    Shell.TabBarUnselectedColor="#94A3B8">
 
     <TabBar>
-        <Tab Title="Arrêts">
+        <Tab Title="Accueil">
             <ShellContent ContentTemplate="{DataTemplate views:HomeStopsPage}" />
         </Tab>
-        <Tab Title="Signalements">
-            <ShellContent ContentTemplate="{DataTemplate views:ReportsPage}" />
+        <Tab Title="Favoris">
+            <ShellContent ContentTemplate="{DataTemplate views:FavoritesPage}" />
         </Tab>
         <Tab Title="Signaler">
             <ShellContent ContentTemplate="{DataTemplate views:AddReportPage}" />
+        </Tab>
+        <Tab Title="Profil">
+            <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" />
         </Tab>
     </TabBar>
 </Shell>
