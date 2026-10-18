@@ -1,50 +1,62 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFrameworks>net9.0-windows10.0.19041.0</TargetFrameworks>
-		<OutputType>Exe</OutputType>
-		<RootNamespace>transitrack</RootNamespace>
-		<UseMaui>true</UseMaui>
-		<SingleProject>true</SingleProject>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+  <PropertyGroup>
+	  <TargetFrameworks>net10.0-android</TargetFrameworks>
+	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
 
-		<!-- Titre et identifiants -->
-		<ApplicationTitle>transitrack</ApplicationTitle>
-		<ApplicationId>com.companyname.transitrack</ApplicationId>
-		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<ApplicationVersion>1</ApplicationVersion>
+    <!-- Titre et identifiants -->
+    <ApplicationTitle>transitrack</ApplicationTitle>
+    <ApplicationId>com.companyname.transitrack</ApplicationId>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
 
-		<WindowsPackageType>None</WindowsPackageType>
-		<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-	</PropertyGroup>
+    <WindowsPackageType>None</WindowsPackageType>
+    <!-- Valeurs Windows existantes -->
+	  <SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-android'))">21.0</SupportedOSPlatformVersion>
+	  <SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
+	  <TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
+  </PropertyGroup>
 
-	<!-- Exclusion des dossiers Android, iOS et MacCatalyst lors du build Windows -->
-	<ItemGroup>
-		<Compile Remove="Platforms\Android\**" />
-		<Compile Remove="Platforms\iOS\**" />
-		<Compile Remove="Platforms\MacCatalyst\**" />
-		<Compile Remove="Platforms\Tizen\**" />
-		<None Include="Platforms\Android\**" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-		<None Include="Platforms\iOS\**" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-		<None Include="Platforms\MacCatalyst\**" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-		<None Include="Platforms\Tizen\**" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-	</ItemGroup>
+  <!-- Propriétés spécifiques Android -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
+    <!-- Minimum Android API level required (>= 21) -->
+    <AndroidMinSdkVersion>21</AndroidMinSdkVersion>
+    <!-- Target SDK (adapter si nécessaire) -->
+    <AndroidTargetSdkVersion>33</AndroidTargetSdkVersion>
+    <!-- Optionnel : version d'Android pour les attributs de plate-forme -->
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
-		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
-		<MauiFont Include="Resources\Fonts\*" />
-		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
+  <!-- Exclusion des dossiers Android/iOS/MacCatalyst/Tizen uniquement pour build Windows -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows10.0.19041.0'">
+    <Compile Remove="Platforms\Android\**" />
+    <Compile Remove="Platforms\iOS\**" />
+    <Compile Remove="Platforms\MacCatalyst\**" />
+    <Compile Remove="Platforms\Tizen\**" />
+    <None Include="Platforms\Android\**" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <None Include="Platforms\iOS\**" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <None Include="Platforms\MacCatalyst\**" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <None Include="Platforms\Tizen\**" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
-	</ItemGroup>
+  <ItemGroup>
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+    <MauiImage Include="Resources\Images\*" />
+    <MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+    <MauiFont Include="Resources\Fonts\*" />
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+  </ItemGroup>
 
 </Project>
