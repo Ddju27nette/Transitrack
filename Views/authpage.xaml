@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="transitrack.Views.AuthPage"
+             BackgroundColor="#FFFFFF">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="24" Padding="24,36,24,32" MaximumWidthRequest="460">
+
+            <!-- En-tête : Connexion -->
+            <VerticalStackLayout Spacing="6" Margin="0,10,0,10">
+                <Label x:Name="LblAuthTitle" Text="Connexion" FontSize="26" FontAttributes="Bold" TextColor="#0F172A" />
+                <Label Text="Contribuez et synchronisez vos favoris." FontSize="14" TextColor="#64748B" />
+            </VerticalStackLayout>
+
+            <!-- Champs du formulaire -->
+            <VerticalStackLayout Spacing="18">
+
+                <!-- Champ Nom (pour le mode Inscription uniquement) -->
+                <VerticalStackLayout x:Name="FieldUsername" Spacing="6" IsVisible="False">
+                    <Label Text="Nom d'utilisateur" FontSize="13" FontAttributes="Bold" TextColor="#334155" />
+                    <Border Stroke="#CBD5E1" StrokeThickness="1" StrokeShape="RoundRectangle 10" BackgroundColor="#FFFFFF" Padding="14,0">
+                        <Entry Placeholder="amina_k" FontSize="14" HeightRequest="48" TextColor="#0F172A" />
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Champ Adresse e-mail -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Adresse e-mail" FontSize="13" FontAttributes="Bold" TextColor="#334155" />
+                    <Border Stroke="#CBD5E1" StrokeThickness="1" StrokeShape="RoundRectangle 10" BackgroundColor="#FFFFFF" Padding="14,0">
+                        <Entry x:Name="EntryEmail" Placeholder="nom@exemple.com" Keyboard="Email" FontSize="14" HeightRequest="48" TextColor="#0F172A" />
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Champ Mot de passe avec toggle Afficher -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Mot de passe" FontSize="13" FontAttributes="Bold" TextColor="#334155" />
+                    <Border Stroke="#CBD5E1" StrokeThickness="1" StrokeShape="RoundRectangle 10" BackgroundColor="#FFFFFF" Padding="14,0">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <Entry x:Name="EntryPassword" IsPassword="True" Placeholder="••••••••" FontSize="14" HeightRequest="48" TextColor="#0F172A" />
+                            <Label x:Name="LblTogglePwd" Grid.Column="1" Text="Afficher" FontSize="13" FontAttributes="Bold" TextColor="#0F766E" VerticalOptions="Center" Margin="6,0,0,0">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTogglePasswordClicked" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Lien Mot de passe oublié -->
+                <Label x:Name="LblForgotPassword" Text="Mot de passe oublié ?" FontSize="13" TextColor="#0F766E" HorizontalOptions="Start">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnForgotPasswordClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <!-- Bouton Se connecter -->
+                <Button x:Name="BtnSubmit" Text="Se connecter" BackgroundColor="#0F766E" TextColor="#FFFFFF"
+                        FontAttributes="Bold" CornerRadius="10" HeightRequest="50" Margin="0,6,0,0"
+                        Clicked="OnSubmitClicked" />
+            </VerticalStackLayout>
+
+            <!-- Séparateur ou -->
+            <Grid ColumnDefinitions="*, Auto, *" VerticalOptions="Center" Margin="0,8">
+                <BoxView Grid.Column="0" HeightRequest="1" Color="#E2E8F0" VerticalOptions="Center" />
+                <Label Grid.Column="1" Text="ou" FontSize="13" TextColor="#94A3B8" Margin="14,0" VerticalOptions="Center" />
+                <BoxView Grid.Column="2" HeightRequest="1" Color="#E2E8F0" VerticalOptions="Center" />
+            </Grid>
+
+            <!-- Actions secondaires -->
+            <VerticalStackLayout Spacing="14">
+                <Button x:Name="BtnSwitchMode" Text="Créer un compte" BackgroundColor="#FFFFFF" TextColor="#0F172A"
+                        BorderColor="#CBD5E1" BorderWidth="1" FontAttributes="Bold" CornerRadius="10" HeightRequest="48"
+                        Clicked="OnSwitchModeClicked" />
+
+                <VerticalStackLayout Spacing="4">
+                    <Button Text="Continuer sans compte" BackgroundColor="Transparent" TextColor="#0F766E"
+                            FontSize="14" FontAttributes="Bold" Clicked="OnContinueAsGuestClicked" />
+                    <Label Text="Un compte n'est nécessaire que pour contribuer." FontSize="12" TextColor="#64748B" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
