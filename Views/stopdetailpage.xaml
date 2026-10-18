@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="transitrack.Views.StopDetailPage"
+             BackgroundColor="#F8FAFC">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" Padding="16,20,16,32">
+
+            <!-- En-tête Navigation -->
+            <Button Text="← Retour" BackgroundColor="Transparent" TextColor="#0F766E" 
+                    FontAttributes="Bold" HorizontalOptions="Start" Padding="0" Clicked="OnBackClicked" />
+
+            <!-- Carte En-tête Arrêt avec distance Figma -->
+            <Border Stroke="#E2E8F0" StrokeThickness="1" StrokeShape="RoundRectangle 16" BackgroundColor="#FFFFFF" Padding="18">
+                <Grid ColumnDefinitions="*, Auto">
+                    <VerticalStackLayout Spacing="4">
+                        <Label x:Name="LblStopTitle" Text="Rond-point Deïdo" FontSize="20" FontAttributes="Bold" TextColor="#0F172A" />
+                        <Label Text="Arrêt • 120 m" FontSize="13" TextColor="#64748B" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="1" Text="★" FontSize="24" TextColor="#F59E0B" VerticalOptions="Center" />
+                </Grid>
+            </Border>
+
+            <!-- Ligne 12 vers Akwa -->
+            <Border Stroke="#E2E8F0" StrokeThickness="1" StrokeShape="RoundRectangle 14" BackgroundColor="#FFFFFF" Padding="14">
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="Auto, *, Auto">
+                        <Border BackgroundColor="#0F766E" StrokeShape="RoundRectangle 6" Padding="6,2" MinimumWidthRequest="40">
+                            <Label Text="L12" TextColor="#FFFFFF" FontAttributes="Bold" FontSize="12" HorizontalOptions="Center" />
+                        </Border>
+                        <Label Grid.Column="1" Text="vers Akwa" FontSize="14" TextColor="#1E293B" FontAttributes="Bold" Margin="10,0,0,0" VerticalOptions="Center" />
+                        <Label Grid.Column="2" Text="5–10 min" FontSize="15" FontAttributes="Bold" TextColor="#0F766E" VerticalOptions="Center" />
+                    </Grid>
+                    <Grid ColumnDefinitions="Auto, *">
+                        <Border BackgroundColor="#DCFCE7" StrokeShape="RoundRectangle 6" Padding="6,2">
+                            <Label Text="Fiable" FontSize="11" TextColor="#15803D" FontAttributes="Bold" />
+                        </Border>
+                        <Label Grid.Column="1" Text="Mis à jour il y a 2 min • 3 confirmations" FontSize="11" TextColor="#64748B" Margin="8,0,0,0" VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Ligne 7 vers Bonanjo -->
+            <Border Stroke="#E2E8F0" StrokeThickness="1" StrokeShape="RoundRectangle 14" BackgroundColor="#FFFFFF" Padding="14">
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="Auto, *, Auto">
+                        <Border BackgroundColor="#2563EB" StrokeShape="RoundRectangle 6" Padding="6,2" MinimumWidthRequest="40">
+                            <Label Text="L7" TextColor="#FFFFFF" FontAttributes="Bold" FontSize="12" HorizontalOptions="Center" />
+                        </Border>
+                        <Label Grid.Column="1" Text="vers Bonanjo" FontSize="14" TextColor="#1E293B" FontAttributes="Bold" Margin="10,0,0,0" VerticalOptions="Center" />
+                        <Label Grid.Column="2" Text="10–15 min" FontSize="15" FontAttributes="Bold" TextColor="#2563EB" VerticalOptions="Center" />
+                    </Grid>
+                    <Grid ColumnDefinitions="Auto, *">
+                        <Border BackgroundColor="#FEF3C7" StrokeShape="RoundRectangle 6" Padding="6,2">
+                            <Label Text="À confirmer" FontSize="11" TextColor="#B45309" FontAttributes="Bold" />
+                        </Border>
+                        <Label Grid.Column="1" Text="Mis à jour il y a 9 min • 1 confirmation" FontSize="11" TextColor="#64748B" Margin="8,0,0,0" VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Ligne 3 vers Bonabéri -->
+            <Border Stroke="#E2E8F0" StrokeThickness="1" StrokeShape="RoundRectangle 14" BackgroundColor="#FFFFFF" Padding="14">
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="Auto, *, Auto">
+                        <Border BackgroundColor="#D97706" StrokeShape="RoundRectangle 6" Padding="6,2" MinimumWidthRequest="40">
+                            <Label Text="L3" TextColor="#FFFFFF" FontAttributes="Bold" FontSize="12" HorizontalOptions="Center" />
+                        </Border>
+                        <Label Grid.Column="1" Text="vers Bonabéri" FontSize="14" TextColor="#1E293B" FontAttributes="Bold" Margin="10,0,0,0" VerticalOptions="Center" />
+                        <Label Grid.Column="2" Text="—" FontSize="15" FontAttributes="Bold" TextColor="#94A3B8" VerticalOptions="Center" />
+                    </Grid>
+                    <Grid ColumnDefinitions="Auto, *">
+                        <Border BackgroundColor="#F1F5F9" StrokeShape="RoundRectangle 6" Padding="6,2">
+                            <Label Text="Information ancienne" FontSize="11" TextColor="#64748B" />
+                        </Border>
+                        <Label Grid.Column="1" Text="Dernier signalement il y a 47 min" FontSize="11" TextColor="#94A3B8" Margin="8,0,0,0" VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Boutons d'action Figma -->
+            <Button Text="Signaler le passage d'un bus" BackgroundColor="#0F766E" TextColor="#FFFFFF" 
+                    FontAttributes="Bold" CornerRadius="12" HeightRequest="50" Margin="0,4,0,0"
+                    Clicked="OnReportBusClicked" />
+
+            <Button Text="Actualiser" BackgroundColor="#FFFFFF" TextColor="#0F172A" BorderColor="#CBD5E1" BorderWidth="1"
+                    FontAttributes="Bold" CornerRadius="12" HeightRequest="48" Clicked="OnRefreshClicked" />
+
+            <!-- Lien Historique -->
+            <Label Text="Voir l'historique de l'arrêt →" FontSize="14" FontAttributes="Bold" TextColor="#0F766E" HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnViewHistoryClicked" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <!-- Mentions légales / explicatives en bas -->
+            <VerticalStackLayout Spacing="4" Margin="0,10,0,0">
+                <Label Text="Estimation communautaire, pas une garantie." FontSize="11" TextColor="#64748B" HorizontalOptions="Center" />
+                <Label Text="Les observations de plus de 20 min sont signalées." FontSize="11" TextColor="#64748B" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
