@@ -10,5 +10,11 @@
         <Tab Title="Arrêts">
             <ShellContent ContentTemplate="{DataTemplate views:HomeStopsPage}" />
         </Tab>
+        <Tab Title="Signalements">
+            <ShellContent ContentTemplate="{DataTemplate views:ReportsPage}" />
+        </Tab>
+        <Tab Title="Signaler">
+            <ShellContent ContentTemplate="{DataTemplate views:AddReportPage}" />
+        </Tab>
     </TabBar>
 </Shell>
