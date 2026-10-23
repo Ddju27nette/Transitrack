@@ -1,15 +1,10 @@
-namespace transitrack.Models;
+namespace TransiTrack.Models;
 
-public class TripHistory : ContentPage
+public class TripHistory
 {
-	public TripHistory()
-	{
-		Content = new VerticalStackLayout
-		{
-			Children = {
-				new Label { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Welcome to .NET MAUI!"
-				}
-			}
-		};
-	}
+    public string Origin { get; set; } = string.Empty;
+    public string Destination { get; set; } = string.Empty;
+    public string DateFormatted { get; set; } = string.Empty;
+    public string LineUsed { get; set; } = string.Empty;
+    public string Duration { get; set; } = string.Empty;
 }

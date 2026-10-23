@@ -1,15 +1,12 @@
-namespace transitrack.Models;
+namespace TransiTrack.Models;
 
-public class BusStop : ContentPage
+public class BusStop
 {
-	public BusStop()
-	{
-		Content = new VerticalStackLayout
-		{
-			Children = {
-				new Label { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Welcome to .NET MAUI!"
-				}
-			}
-		};
-	}
+    public string Id { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public double Latitude { get; set; }
+    public double Longitude { get; set; }
+    public bool IsFavorite { get; set; }
+    public string Distance { get; set; } = "150 m";
 }

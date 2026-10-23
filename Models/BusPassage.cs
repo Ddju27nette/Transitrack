@@ -1,15 +1,16 @@
-namespace transitrack.Models;
+namespace TransiTrack.Models;
 
-public class BusPassage : ContentPage
+public class BusPassage
 {
-	public BusPassage()
-	{
-		Content = new VerticalStackLayout
-		{
-			Children = {
-				new Label { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Welcome to .NET MAUI!"
-				}
-			}
-		};
-	}
+    public string LineCode { get; set; } = string.Empty;
+    public string Destination { get; set; } = string.Empty;
+    public int MinutesRemaining { get; set; }
+    public string CrowdLevel { get; set; } = "Faible"; // Faible, Modéré, Saturé
+    public Color CrowdColor => CrowdLevel switch
+    {
+        "Faible" => Color.FromArgb("#34A853"),
+        "Modéré" => Color.FromArgb("#FBBC04"),
+        "Saturé" => Color.FromArgb("#EA4335"),
+        _ => Color.FromArgb("#5F6368")
+    };
 }

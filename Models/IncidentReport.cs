@@ -1,15 +1,9 @@
-namespace transitrack.Models;
+namespace TransiTrack.Models;
 
-public class IncidentReport : ContentPage
+public class IncidentReport
 {
-	public IncidentReport()
-	{
-		Content = new VerticalStackLayout
-		{
-			Children = {
-				new Label { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Welcome to .NET MAUI!"
-				}
-			}
-		};
-	}
+    public string IncidentType { get; set; } = string.Empty;
+    public string Location { get; set; } = string.Empty;
+    public string Details { get; set; } = string.Empty;
+    public DateTime ReportedAt { get; set; } = DateTime.Now;
 }
