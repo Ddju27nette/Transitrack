@@ -1,6 +1,9 @@
-﻿using transitrack.Views;
+﻿using transitrack.Views.Auth;
+using transitrack.Views.Stops;
+using TransiTrack.Views.Auth;
+using TransiTrack.Views.Stops;
 
-namespace transitrack;
+namespace TransiTrack;
 
 public partial class AppShell : Shell
 {
@@ -8,9 +11,10 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        Routing.RegisterRoute(nameof(StopDetailPage), typeof(StopDetailPage));
-        Routing.RegisterRoute(nameof(AuthPage), typeof(AuthPage));
-        Routing.RegisterRoute(nameof(HistoryPage), typeof(HistoryPage));
-        Routing.RegisterRoute(nameof(FavoritesPage), typeof(FavoritesPage));
+        // Enregistrement des routes de navigation empilées
+        Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+        Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
+        Routing.RegisterRoute(nameof(StopMapPage), typeof(StopMapPage));
+        Routing.RegisterRoute(nameof(StopPassagesPage), typeof(StopPassagesPage));
     }
 }

@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="transitrack.AppShell"
+    x:Class="TransiTrack.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:transitrack.Views"
-    Shell.NavBarIsVisible="False"
-    Shell.TabBarBackgroundColor="#F7F3E7"
-    Shell.TabBarForegroundColor="#0F3C39"
-    Shell.TabBarTitleColor="#0F3C39"
-    Shell.TabBarUnselectedColor="#7A8A85"
-    BackgroundColor="#F7F3E7">
+    xmlns:home="clr-namespace:TransiTrack.Views.Home"
+    xmlns:fav="clr-namespace:TransiTrack.Views.Favorites"
+    xmlns:hist="clr-namespace:TransiTrack.Views.History"
+    xmlns:rep="clr-namespace:TransiTrack.Views.Report"
+    xmlns:prof="clr-namespace:TransiTrack.Views.Profile"
+    Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
-        <Tab Title="Accueil" Icon="dotnet_bot.png">
-            <ShellContent Route="HomeStopsPage" ContentTemplate="{DataTemplate views:HomeStopsPage}" />
+        <Tab Title="Accueil" Icon="icon_home.png">
+            <ShellContent Route="HomePage" ContentTemplate="{DataTemplate home:HomePage}" />
         </Tab>
-        <Tab Title="Favoris" Icon="dotnet_bot.png">
-            <ShellContent Route="FavoritesPage" ContentTemplate="{DataTemplate views:FavoritesPage}" />
+        <Tab Title="Favoris" Icon="icon_star.png">
+            <ShellContent Route="FavoritesPage" ContentTemplate="{DataTemplate fav:FavoritesPage}" />
         </Tab>
-        <Tab Title="Signaler" Icon="dotnet_bot.png">
-            <ShellContent Route="AddReportPage" ContentTemplate="{DataTemplate views:AddReportPage}" />
+        <Tab Title="Historique" Icon="icon_history.png">
+            <ShellContent Route="HistoryPage" ContentTemplate="{DataTemplate hist:HistoryPage}" />
         </Tab>
-        <Tab Title="Profil" Icon="dotnet_bot.png">
-            <ShellContent Route="ProfilePage" ContentTemplate="{DataTemplate views:ProfilePage}" />
+        <Tab Title="Signalement" Icon="icon_alert.png">
+            <ShellContent Route="ReportPage" ContentTemplate="{DataTemplate rep:ReportPage}" />
+        </Tab>
+        <Tab Title="Profil" Icon="icon_user.png">
+            <ShellContent Route="ProfilePage" ContentTemplate="{DataTemplate prof:ProfilePage}" />
         </Tab>
     </TabBar>
 </Shell>
