@@ -59,4 +59,17 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\Auth\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="Views\Favorites\" />
+    <Folder Include="Views\History\" />
+    <Folder Include="Views\Profile\" />
+    <Folder Include="Views\Report\" />
+    <Folder Include="Views\Stops\" />
+  </ItemGroup>
+
 </Project>
