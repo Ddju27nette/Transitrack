@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="transitrack.Views.AuthPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False"
+    BackgroundColor="#FFFFFF"
+    Padding="20">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+            <Label x:Name="LblTitle" Text="Connexion" FontSize="24" HorizontalOptions="Center" />
+
+            <!-- Username field container (toggle visible en création de compte) -->
+            <VerticalStackLayout x:Name="FieldUsername" IsVisible="False" Spacing="6">
+                <Label Text="Nom d'utilisateur" FontSize="12" />
+                <Entry x:Name="EntryUsername" Placeholder="Nom d'utilisateur" />
+            </VerticalStackLayout>
+
+            <Label Text="Email" FontSize="12" />
+            <Entry x:Name="EntryEmail" Placeholder="email@exemple.com" Keyboard="Email" />
+
+            <Label Text="Mot de passe" FontSize="12" />
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                <Entry x:Name="TxtPassword" IsPassword="True" Placeholder="Mot de passe" Grid.Column="0" />
+                <Label x:Name="LblTogglePwd" Text="Afficher" Grid.Column="1" VerticalTextAlignment="Center" Padding="8,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTogglePasswordClicked" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <Label x:Name="LblForgotPassword" Text="Mot de passe oublié ?" TextColor="#0078D7" HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnForgotPasswordClicked" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Button x:Name="BtnMainSubmit" Text="Se connecter" Clicked="OnSubmitClicked" />
+
+            <Button x:Name="BtnSecondaryAction" Text="Créer un compte" Clicked="OnSwitchModeClicked" />
+
+            <Button Text="Continuer sans compte" Clicked="OnContinueWithoutAccountClicked" BackgroundColor="Transparent" TextColor="#666" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage><?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="transitrack.Views.AuthPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False"
+    BackgroundColor="#FFFFFF"
+    Padding="20">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+            <Label x:Name="LblTitle" Text="Connexion" FontSize="24" HorizontalOptions="Center" />
+
+            <!-- Username field container (toggle visible en création de compte) -->
+            <VerticalStackLayout x:Name="FieldUsername" IsVisible="False" Spacing="6">
+                <Label Text="Nom d'utilisateur" FontSize="12" />
+                <Entry x:Name="EntryUsername" Placeholder="Nom d'utilisateur" />
+            </VerticalStackLayout>
+
+            <Label Text="Email" FontSize="12" />
+            <Entry x:Name="EntryEmail" Placeholder="email@exemple.com" Keyboard="Email" />
+
+            <Label Text="Mot de passe" FontSize="12" />
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                <Entry x:Name="TxtPassword" IsPassword="True" Placeholder="Mot de passe" Grid.Column="0" />
+                <Label x:Name="LblTogglePwd" Text="Afficher" Grid.Column="1" VerticalTextAlignment="Center" Padding="8,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTogglePasswordClicked" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <Label x:Name="LblForgotPassword" Text="Mot de passe oublié ?" TextColor="#0078D7" HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnForgotPasswordClicked" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Button x:Name="BtnMainSubmit" Text="Se connecter" Clicked="OnSubmitClicked" />
+
+            <Button x:Name="BtnSecondaryAction" Text="Créer un compte" Clicked="OnSwitchModeClicked" />
+
+            <Button Text="Continuer sans compte" Clicked="OnContinueWithoutAccountClicked" BackgroundColor="Transparent" TextColor="#666" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage><?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="transitrack.Views.AuthPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False"
+    BackgroundColor="#FFFFFF"
+    Padding="20">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+            <Label x:Name="LblTitle" Text="Connexion" FontSize="24" HorizontalOptions="Center" />
+
+            <!-- Username field container (toggle visible en création de compte) -->
+            <VerticalStackLayout x:Name="FieldUsername" IsVisible="False" Spacing="6">
+                <Label Text="Nom d'utilisateur" FontSize="12" />
+                <Entry x:Name="EntryUsername" Placeholder="Nom d'utilisateur" />
+            </VerticalStackLayout>
+
+            <Label Text="Email" FontSize="12" />
+            <Entry x:Name="EntryEmail" Placeholder="email@exemple.com" Keyboard="Email" />
+
+            <Label Text="Mot de passe" FontSize="12" />
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                <Entry x:Name="TxtPassword" IsPassword="True" Placeholder="Mot de passe" Grid.Column="0" />
+                <Label x:Name="LblTogglePwd" Text="Afficher" Grid.Column="1" VerticalTextAlignment="Center" Padding="8,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTogglePasswordClicked" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <Label x:Name="LblForgotPassword" Text="Mot de passe oublié ?" TextColor="#0078D7" HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnForgotPasswordClicked" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Button x:Name="BtnMainSubmit" Text="Se connecter" Clicked="OnSubmitClicked" />
+
+            <Button x:Name="BtnSecondaryAction" Text="Créer un compte" Clicked="OnSwitchModeClicked" />
+
+            <Button Text="Continuer sans compte" Clicked="OnContinueWithoutAccountClicked" BackgroundColor="Transparent" TextColor="#666" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage><?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="transitrack.Views.AuthPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False"
+    BackgroundColor="#FFFFFF"
+    Padding="20">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+            <Label x:Name="LblTitle" Text="Connexion" FontSize="24" HorizontalOptions="Center" />
+
+            <!-- Username field container (toggle visible en création de compte) -->
+            <VerticalStackLayout x:Name="FieldUsername" IsVisible="False" Spacing="6">
+                <Label Text="Nom d'utilisateur" FontSize="12" />
+                <Entry x:Name="EntryUsername" Placeholder="Nom d'utilisateur" />
+            </VerticalStackLayout>
+
+            <Label Text="Email" FontSize="12" />
+            <Entry x:Name="EntryEmail" Placeholder="email@exemple.com" Keyboard="Email" />
+
+            <Label Text="Mot de passe" FontSize="12" />
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                <Entry x:Name="TxtPassword" IsPassword="True" Placeholder="Mot de passe" Grid.Column="0" />
+                <Label x:Name="LblTogglePwd" Text="Afficher" Grid.Column="1" VerticalTextAlignment="Center" Padding="8,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTogglePasswordClicked" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <Label x:Name="LblForgotPassword" Text="Mot de passe oublié ?" TextColor="#0078D7" HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnForgotPasswordClicked" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Button x:Name="BtnMainSubmit" Text="Se connecter" Clicked="OnSubmitClicked" />
+
+            <Button x:Name="BtnSecondaryAction" Text="Créer un compte" Clicked="OnSwitchModeClicked" />
+
+            <Button Text="Continuer sans compte" Clicked="OnContinueWithoutAccountClicked" BackgroundColor="Transparent" TextColor="#666" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage><?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="transitrack.Views.AuthPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False"
+    BackgroundColor="#FFFFFF"
+    Padding="20">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+            <Label x:Name="LblTitle" Text="Connexion" FontSize="24" HorizontalOptions="Center" />
+
+            <!-- Username field container (toggle visible en création de compte) -->
+            <VerticalStackLayout x:Name="FieldUsername" IsVisible="False" Spacing="6">
+                <Label Text="Nom d'utilisateur" FontSize="12" />
+                <Entry x:Name="EntryUsername" Placeholder="Nom d'utilisateur" />
+            </VerticalStackLayout>
+
+            <Label Text="Email" FontSize="12" />
+            <Entry x:Name="EntryEmail" Placeholder="email@exemple.com" Keyboard="Email" />
+
+            <Label Text="Mot de passe" FontSize="12" />
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                <Entry x:Name="TxtPassword" IsPassword="True" Placeholder="Mot de passe" Grid.Column="0" />
+                <Label x:Name="LblTogglePwd" Text="Afficher" Grid.Column="1" VerticalTextAlignment="Center" Padding="8,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTogglePasswordClicked" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <Label x:Name="LblForgotPassword" Text="Mot de passe oublié ?" TextColor="#0078D7" HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnForgotPasswordClicked" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Button x:Name="BtnMainSubmit" Text="Se connecter" Clicked="OnSubmitClicked" />
+
+            <Button x:Name="BtnSecondaryAction" Text="Créer un compte" Clicked="OnSwitchModeClicked" />
+
+            <Button Text="Continuer sans compte" Clicked="OnContinueWithoutAccountClicked" BackgroundColor="Transparent" TextColor="#666" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage><?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="transitrack.Views.AuthPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False"
+    BackgroundColor="#FFFFFF"
+    Padding="20">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+            <Label x:Name="LblTitle" Text="Connexion" FontSize="24" HorizontalOptions="Center" />
+
+            <!-- Username field container (toggle visible en création de compte) -->
+            <VerticalStackLayout x:Name="FieldUsername" IsVisible="False" Spacing="6">
+                <Label Text="Nom d'utilisateur" FontSize="12" />
+                <Entry x:Name="EntryUsername" Placeholder="Nom d'utilisateur" />
+            </VerticalStackLayout>
+
+            <Label Text="Email" FontSize="12" />
+            <Entry x:Name="EntryEmail" Placeholder="email@exemple.com" Keyboard="Email" />
+
+            <Label Text="Mot de passe" FontSize="12" />
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                <Entry x:Name="TxtPassword" IsPassword="True" Placeholder="Mot de passe" Grid.Column="0" />
+                <Label x:Name="LblTogglePwd" Text="Afficher" Grid.Column="1" VerticalTextAlignment="Center" Padding="8,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTogglePasswordClicked" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <Label x:Name="LblForgotPassword" Text="Mot de passe oublié ?" TextColor="#0078D7" HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnForgotPasswordClicked" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Button x:Name="BtnMainSubmit" Text="Se connecter" Clicked="OnSubmitClicked" />
+
+            <Button x:Name="BtnSecondaryAction" Text="Créer un compte" Clicked="OnSwitchModeClicked" />
+
+            <Button Text="Continuer sans compte" Clicked="OnContinueWithoutAccountClicked" BackgroundColor="Transparent" TextColor="#666" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage><?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="transitrack.Views.AuthPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False"
+    BackgroundColor="#FFFFFF"
+    Padding="20">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="16" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+            <Label x:Name="LblTitle" Text="Connexion" FontSize="24" HorizontalOptions="Center" />
+
+            <!-- Username field container (toggle visible en création de compte) -->
+            <VerticalStackLayout x:Name="FieldUsername" IsVisible="False" Spacing="6">
+                <Label Text="Nom d'utilisateur" FontSize="12" />
+                <Entry x:Name="EntryUsername" Placeholder="Nom d'utilisateur" />
+            </VerticalStackLayout>
+
+            <Label Text="Email" FontSize="12" />
+            <Entry x:Name="EntryEmail" Placeholder="email@exemple.com" Keyboard="Email" />
+
+            <Label Text="Mot de passe" FontSize="12" />
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                <Entry x:Name="TxtPassword" IsPassword="True" Placeholder="Mot de passe" Grid.Column="0" />
+                <Label x:Name="LblTogglePwd" Text="Afficher" Grid.Column="1" VerticalTextAlignment="Center" Padding="8,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTogglePasswordClicked" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <Label x:Name="LblForgotPassword" Text="Mot de passe oublié ?" TextColor="#0078D7" HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnForgotPasswordClicked" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Button x:Name="BtnMainSubmit" Text="Se connecter" Clicked="OnSubmitClicked" />
+
+            <Button x:Name="BtnSecondaryAction" Text="Créer un compte" Clicked="OnSwitchModeClicked" />
+
+            <Button Text="Continuer sans compte" Clicked="OnContinueWithoutAccountClicked" BackgroundColor="Transparent" TextColor="#666" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

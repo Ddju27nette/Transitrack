@@ -40,6 +40,8 @@
 		<Compile Remove="Platforms\MacCatalyst\**" />
 		<Compile Remove="Platforms\Tizen\**" />
 		<Compile Remove="TransiTrack.Api\**\*.cs" />
+		<Compile Remove="LegacyPrototype\**\*.cs" />
+		<MauiXaml Remove="LegacyPrototype\**\*.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
