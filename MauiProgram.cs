@@ -1,19 +1,9 @@
-﻿using transitrack;
-using transitrack.Services;
-using transitrack.ViewModels;
-using transitrack.Views.Auth;
-using transitrack.Views.Home;
-using transitrack.Views.Report;
-using transitrack.Views.Stops;
+﻿using transitrack.Services;
 using TransiTrack.Services;
 using TransiTrack.ViewModels;
-using TransiTrack.Views.Auth;
-using TransiTrack.Views.Favorites;
-using TransiTrack.Views.History;
+using TransiTrack.Views.Driver;
 using TransiTrack.Views.Home;
-using TransiTrack.Views.Profile;
 using TransiTrack.Views.Report;
-using TransiTrack.Views.Stops;
 
 namespace TransiTrack;
 
@@ -24,6 +14,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiMaps() // Activation impérative de la carte
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -31,28 +22,17 @@ public static class MauiProgram
             });
 
         // Services
-        builder.Services.AddSingleton<ITransitService, MockTransitService>();
+        builder.Services.AddSingleton<RealtimeTrackingService>();
 
         // ViewModels
-        builder.Services.AddTransient<LoginViewModel>();
-        builder.Services.AddTransient<RegisterViewModel>();
-        builder.Services.AddTransient<HomeViewModel>();
-        builder.Services.AddTransient<FavoritesViewModel>();
-        builder.Services.AddTransient<StopPassagesViewModel>();
-        builder.Services.AddTransient<HistoryViewModel>();
+        builder.Services.AddSingleton<HomeMapViewModel>();
+        builder.Services.AddTransient<DriverViewModel>();
         builder.Services.AddTransient<ReportViewModel>();
-        builder.Services.AddTransient<ProfileViewModel>();
 
         // Views
-        builder.Services.AddTransient<LoginPage>();
-        builder.Services.AddTransient<RegisterPage>();
-        builder.Services.AddTransient<HomePage>();
-        builder.Services.AddTransient<StopMapPage>();
-        builder.Services.AddTransient<StopPassagesPage>();
-        builder.Services.AddTransient<FavoritesPage>();
-        builder.Services.AddTransient<HistoryPage>();
+        builder.Services.AddSingleton<HomePage>();
+        builder.Services.AddTransient<DriverPage>();
         builder.Services.AddTransient<ReportPage>();
-        builder.Services.AddTransient<ProfilePage>();
 
         return builder.Build();
     }

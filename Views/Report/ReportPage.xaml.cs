@@ -1,9 +1,12 @@
-namespace transitrack.Views.Report;
+using TransiTrack.ViewModels;
+
+namespace TransiTrack.Views.Report;
 
 public partial class ReportPage : ContentPage
 {
-	public ReportPage()
-	{
-		InitializeComponent();
-	}
+    public ReportPage(ReportViewModel vm)
+    {
+        InitializeComponent();
+        BindingContext = vm;
+    }
 }

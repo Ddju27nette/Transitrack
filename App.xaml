@@ -4,32 +4,20 @@
              x:Class="TransiTrack.App">
     <Application.Resources>
         <ResourceDictionary>
-            <!-- Palette Couleurs TransiTrack -->
-            <Color x:Key="PrimaryColor">#1A73E8</Color>
-            <Color x:Key="PrimaryDark">#1557B0</Color>
-            <Color x:Key="SecondaryColor">#34A853</Color>
+            <Color x:Key="PrimaryColor">#0D6EFD</Color>
+            <Color x:Key="SuccessColor">#198754</Color>
+            <Color x:Key="WarningColor">#FFC107</Color>
+            <Color x:Key="DangerColor">#DC3545</Color>
             <Color x:Key="BackgroundColor">#F8F9FA</Color>
-            <Color x:Key="SurfaceColor">#FFFFFF</Color>
-            <Color x:Key="TextPrimary">#202124</Color>
-            <Color x:Key="TextSecondary">#5F6368</Color>
-            <Color x:Key="DangerColor">#EA4335</Color>
-            <Color x:Key="WarningColor">#FBBC04</Color>
-            <Color x:Key="BorderColor">#E0E0E0</Color>
+            <Color x:Key="TextPrimary">#212529</Color>
+            <Color x:Key="TextSecondary">#6C757D</Color>
 
-            <!-- Styles communs -->
-            <Style TargetType="Button" x:Key="PrimaryButtonStyle">
+            <Style TargetType="Button" x:Key="PrimaryBtnStyle">
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="HeightRequest" Value="48" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontSize" Value="16" />
-            </Style>
-
-            <Style TargetType="Entry" x:Key="StandardEntryStyle">
-                <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
-                <Setter Property="PlaceholderColor" Value="{StaticResource TextSecondary}" />
-                <Setter Property="HeightRequest" Value="46" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

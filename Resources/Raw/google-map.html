@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="map" aria-label="Carte des bus en direct"></div>
+    <script>
+        let map;
+        let infoWindow;
+        const vehicleMarkers = new Map();
+
+        window.initTransitTrackMap = function () {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 4.0511, lng: 9.7085 },
+                zoom: 13,
+                mapTypeControl: false,
+                streetViewControl: false,
+                fullscreenControl: false
+            });
+            infoWindow = new google.maps.InfoWindow();
+            window.transitTrackMapReady = true;
+        };
+
+        window.updateVehicle = function (vehicle) {
+            const position = {
+                lat: vehicle.latitude,
+                lng: vehicle.longitude
+            };
+            let marker = vehicleMarkers.get(vehicle.id);
+
+            if (!marker) {
+                marker = new google.maps.Marker({
+                    map: map,
+                    position: position,
+                    title: vehicle.title + " · " + vehicle.details,
+                    label: {
+                        text: "BUS",
+                        color: "#ffffff",
+                        fontWeight: "bold",
+                        fontSize: "10px"
+                    }
+                });
+                marker.addListener("click", function () {
+                    const content = document.createElement("div");
+                    content.textContent = marker.getTitle();
+                    infoWindow.setContent(content);
+                    infoWindow.open({ map: map, anchor: marker });
+                });
+                vehicleMarkers.set(vehicle.id, marker);
+            } else {
+                marker.setTitle(vehicle.title + " · " + vehicle.details);
+                const start = marker.getPosition();
+                const beganAt = performance.now();
+                const duration = 700;
+
+                function animate(now) {
+                    const progress = Math.min((now - beganAt) / duration, 1);
+                    marker.setPosition({
+                        lat: start.lat() + (position.lat - start.lat()) * progress,
+                        lng: start.lng() + (position.lng - start.lng()) * progress
+                    });
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    }
+                }
+
+                requestAnimationFrame(animate);
+            }
+        };
+
+        window.removeVehicle = function (vehicleId) {
+            const marker = vehicleMarkers.get(vehicleId);
+            if (marker) {
+                marker.setMap(null);
+                vehicleMarkers.delete(vehicleId);
+            }
+        };
+
+        window.clearVehicles = function () {
+            for (const marker of vehicleMarkers.values()) {
+                marker.setMap(null);
+            }
+            vehicleMarkers.clear();
+        };
+    </script>
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=__GOOGLE_MAPS_API_KEY__&callback=initTransitTrackMap">
+    </script>
+</body>
+</html>

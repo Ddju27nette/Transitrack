@@ -1,9 +1,12 @@
-namespace transitrack.Views.Profile;
+using TransiTrack.ViewModels;
+
+namespace TransiTrack.Views.Profile;
 
 public partial class ProfilePage : ContentPage
 {
-	public ProfilePage()
-	{
-		InitializeComponent();
-	}
+    public ProfilePage(ProfileViewModel viewModel)
+    {
+        InitializeComponent();
+        BindingContext = viewModel;
+    }
 }

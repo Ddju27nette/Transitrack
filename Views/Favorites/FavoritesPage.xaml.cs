@@ -1,9 +1,20 @@
-namespace transitrack.Views.Favorites;
+using TransiTrack.ViewModels;
+
+namespace TransiTrack.Views.Favorites;
 
 public partial class FavoritesPage : ContentPage
 {
-	public FavoritesPage()
-	{
-		InitializeComponent();
-	}
+    private readonly FavoritesViewModel _vm;
+
+    public FavoritesPage(FavoritesViewModel vm)
+    {
+        InitializeComponent();
+        BindingContext = _vm = vm;
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await _vm.LoadFavoritesAsync();
+    }
 }

@@ -1,9 +1,12 @@
-namespace transitrack.Views.Auth;
+using TransiTrack.ViewModels;
+
+namespace TransiTrack.Views.Auth;
 
 public partial class RegisterPage : ContentPage
 {
-	public RegisterPage()
-	{
-		InitializeComponent();
-	}
+    public RegisterPage(RegisterViewModel vm)
+    {
+        InitializeComponent();
+        BindingContext = vm;
+    }
 }

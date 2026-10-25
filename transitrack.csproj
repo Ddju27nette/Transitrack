@@ -15,6 +15,10 @@
     <ApplicationId>com.companyname.transitrack</ApplicationId>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
+    <MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
+    <GoogleMapsApiKey Condition="'$(GoogleMapsApiKey)' == ''">$(GOOGLE_MAPS_ANDROID_API_KEY)</GoogleMapsApiKey>
+    <GoogleMapsApiKey Condition="'$(GoogleMapsApiKey)' == ''">$(GOOGLE_MAPS_API_KEY)</GoogleMapsApiKey>
+    <AndroidManifest Condition="'$(Configuration)' == 'Release'">Platforms\Android\AndroidManifest.Release.xml</AndroidManifest>
 
     <WindowsPackageType>None</WindowsPackageType>
     <!-- Valeurs Windows existantes -->
@@ -24,7 +28,7 @@
   </PropertyGroup>
 
   <!-- Propriétés spécifiques Android -->
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0-android'">
     <!-- Minimum Android API level required (>= 21) -->
     <AndroidMinSdkVersion>21</AndroidMinSdkVersion>
     <!-- Target SDK (adapter si nécessaire) -->
@@ -34,7 +38,7 @@
   </PropertyGroup>
 
   <!-- Exclusion des dossiers Android/iOS/MacCatalyst/Tizen uniquement pour build Windows -->
-  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows10.0.19041.0'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-windows10.0.19041.0'">
     <Compile Remove="Platforms\Android\**" />
     <Compile Remove="Platforms\iOS\**" />
     <Compile Remove="Platforms\MacCatalyst\**" />
@@ -55,21 +59,37 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.110" />
+    <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="10.0.110" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="10.0.13" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.13" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Services\" />
-    <Folder Include="Views\Auth\" />
-    <Folder Include="Views\Home\" />
-    <Folder Include="Views\Favorites\" />
-    <Folder Include="Views\History\" />
-    <Folder Include="Views\Profile\" />
-    <Folder Include="Views\Report\" />
-    <Folder Include="Views\Stops\" />
+    <MauiXaml Update="Views\Auth\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Auth\RegisterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Favorites\FavoritesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\History\HistoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Home\HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Report\ReportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Stops\StopMapPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Stops\StopPassagesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
   </ItemGroup>
 
 </Project>

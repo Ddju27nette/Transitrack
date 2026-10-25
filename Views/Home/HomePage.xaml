@@ -1,12 +1,65 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="transitrack.Views.Home.HomePage"
-             Title="HomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:sensors="clr-namespace:Microsoft.Maui.Maps;assembly=Microsoft.Maui.Maps"
+             x:Class="TransiTrack.Views.Home.HomePage"
+             Title="TransiTrack - Trafic Urbain"
+             Shell.NavBarIsVisible="False">
+
+    <Grid>
+        <!-- Carte Map plein écran -->
+        <maps:Map x:Name="BusMap" IsShowingUser="True">
+            <x:Arguments>
+                <sensors:MapSpan>
+                    <x:Arguments>
+                        <sensors:Location>
+                            <!-- Coordonnées par défaut : Douala -->
+                            <x:Arguments>
+                                <x:Double>4.0511</x:Double>
+                                <x:Double>9.7085</x:Double>
+                            </x:Arguments>
+                        </sensors:Location>
+                        <x:Double>0.07</x:Double>
+                        <x:Double>0.07</x:Double>
+                    </x:Arguments>
+                </sensors:MapSpan>
+            </x:Arguments>
+        </maps:Map>
+
+        <!-- Barre de titre / recherche flottante -->
+        <Border VerticalOptions="Start" Margin="16,40,16,0" Padding="14,8" 
+                BackgroundColor="White" StrokeShape="RoundRectangle 12" StrokeThickness="0">
+            <Grid ColumnDefinitions="Auto, *">
+                <Label Text="🚌" FontSize="20" VerticalOptions="Center" Margin="0,0,10,0" />
+                <Label Grid.Column="1" Text="Bus en direct à proximité" FontAttributes="Bold" FontSize="15" VerticalOptions="Center" />
+            </Grid>
+        </Border>
+
+        <!-- Fiche du bus sélectionné avec ETA (Bas de page) -->
+        <Border IsVisible="{Binding HasSelection}" VerticalOptions="End" Margin="16,0,16,24" 
+                Padding="16" BackgroundColor="White" StrokeShape="RoundRectangle 16" StrokeThickness="0">
+            <VerticalStackLayout Spacing="8">
+                <Grid ColumnDefinitions="*, Auto">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="{Binding SelectedVehicle.VehicleRegistration, StringFormat='Matricule : {0}'}" 
+                               FontAttributes="Bold" FontSize="17" TextColor="{StaticResource TextPrimary}" />
+                        <Label Text="{Binding SelectedVehicle.AgencyName}" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                    </VerticalStackLayout>
+                    <Border BackgroundColor="#E8F0FE" StrokeThickness="0" StrokeShape="RoundRectangle 8" Padding="10,4">
+                        <Label Text="{Binding SelectedVehicle.SpeedKmh, StringFormat='{0:F0} km/h'}" 
+                               FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" FontSize="13" />
+                    </Border>
+                </Grid>
+
+                <BoxView HeightRequest="1" Color="#E0E0E0" />
+
+                <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                    <Label Text="{Binding SelectedVehicle.LineId}" FontSize="13" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    <Label Grid.Column="1" Text="{Binding EstimatedMinutes, StringFormat='Arrivée estimée : ~{0} min'}" 
+                           FontAttributes="Bold" TextColor="{StaticResource SuccessColor}" FontSize="14" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>

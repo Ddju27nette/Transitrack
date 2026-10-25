@@ -4,27 +4,19 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:home="clr-namespace:TransiTrack.Views.Home"
-    xmlns:fav="clr-namespace:TransiTrack.Views.Favorites"
-    xmlns:hist="clr-namespace:TransiTrack.Views.History"
     xmlns:rep="clr-namespace:TransiTrack.Views.Report"
-    xmlns:prof="clr-namespace:TransiTrack.Views.Profile"
+    xmlns:drv="clr-namespace:TransiTrack.Views.Driver"
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
-        <Tab Title="Accueil" Icon="icon_home.png">
+        <Tab Title="Carte Direct" Icon="icon_map.png">
             <ShellContent Route="HomePage" ContentTemplate="{DataTemplate home:HomePage}" />
-        </Tab>
-        <Tab Title="Favoris" Icon="icon_star.png">
-            <ShellContent Route="FavoritesPage" ContentTemplate="{DataTemplate fav:FavoritesPage}" />
-        </Tab>
-        <Tab Title="Historique" Icon="icon_history.png">
-            <ShellContent Route="HistoryPage" ContentTemplate="{DataTemplate hist:HistoryPage}" />
         </Tab>
         <Tab Title="Signalement" Icon="icon_alert.png">
             <ShellContent Route="ReportPage" ContentTemplate="{DataTemplate rep:ReportPage}" />
         </Tab>
-        <Tab Title="Profil" Icon="icon_user.png">
-            <ShellContent Route="ProfilePage" ContentTemplate="{DataTemplate prof:ProfilePage}" />
+        <Tab Title="Espace Chauffeur" Icon="icon_bus.png">
+            <ShellContent Route="DriverPage" ContentTemplate="{DataTemplate drv:DriverPage}" />
         </Tab>
     </TabBar>
 </Shell>

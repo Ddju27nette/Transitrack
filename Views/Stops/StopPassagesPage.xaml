@@ -1,12 +1,50 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="transitrack.Views.Stops.StopPassagesPage"
-             Title="StopPassagesPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:vm="clr-namespace:TransiTrack.ViewModels"
+             xmlns:models="clr-namespace:TransiTrack.Models"
+             x:Class="TransiTrack.Views.Stops.StopPassagesPage"
+             x:DataType="vm:StopPassagesViewModel"
+             Title="Prochains Passages"
+             BackgroundColor="{StaticResource BackgroundColor}">
+
+    <Grid RowDefinitions="Auto,*" Padding="16" RowSpacing="14">
+        <!-- Bandeau Arrêt -->
+        <Border Grid.Row="0" Padding="14" StrokeShape="RoundRectangle 12" BackgroundColor="White" StrokeThickness="0">
+            <VerticalStackLayout Spacing="4">
+                <Label Text="{Binding Stop.Name}" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" />
+                <Label Text="{Binding Stop.Description}" FontSize="14" TextColor="{StaticResource TextSecondary}" />
+                <Label Text="● En direct" TextColor="{StaticResource SecondaryColor}" FontSize="12" FontAttributes="Bold" Margin="0,4,0,0" />
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Liste des lignes / bus attendus -->
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Passages}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:BusPassage">
+                    <Border Margin="0,0,0,10" Padding="14" StrokeShape="RoundRectangle 12" BackgroundColor="White" StrokeThickness="0">
+                        <Grid ColumnDefinitions="52, *, Auto" VerticalOptions="Center">
+                            <!-- Badge de ligne -->
+                            <Border BackgroundColor="{StaticResource PrimaryColor}" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="44" WidthRequest="44">
+                                <Label Text="{Binding LineCode}" TextColor="White" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+
+                            <!-- Destination & Affluence -->
+                            <VerticalStackLayout Grid.Column="1" Padding="12,0" VerticalOptions="Center" Spacing="3">
+                                <Label Text="{Binding Destination}" FontAttributes="Bold" FontSize="15" />
+                                <HorizontalStackLayout Spacing="4">
+                                    <Label Text="Affluence :" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                                    <Label Text="{Binding CrowdLevel}" FontSize="12" FontAttributes="Bold" TextColor="{Binding CrowdColor}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+
+                            <!-- Temps restant -->
+                            <Label Grid.Column="2" Text="{Binding MinutesRemaining, StringFormat='{0} min'}" 
+                                   FontAttributes="Bold" FontSize="18" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

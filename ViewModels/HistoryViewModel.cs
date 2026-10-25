@@ -1,15 +1,32 @@
-namespace transitrack.ViewModels;
+using System.Collections.ObjectModel;
+using TransiTrack.Models;
+using TransiTrack.Services;
 
-public class HistoryViewModel : ContentPage
+namespace TransiTrack.ViewModels;
+
+public class HistoryViewModel : BaseViewModel
 {
-	public HistoryViewModel()
-	{
-		Content = new VerticalStackLayout
-		{
-			Children = {
-				new Label { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Welcome to .NET MAUI!"
-				}
-			}
-		};
-	}
+    private readonly ITransitService _transitService;
+    public ObservableCollection<TripHistory> Trips { get; } = new();
+
+    public HistoryViewModel(ITransitService transitService)
+    {
+        _transitService = transitService;
+    }
+
+    public async Task LoadHistoryAsync()
+    {
+        IsBusy = true;
+        try
+        {
+            var items = await _transitService.GetHistoryAsync();
+            Trips.Clear();
+            foreach (var item in items)
+                Trips.Add(item);
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
 }

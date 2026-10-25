@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="transitrack.Views.Stops.StopMapPage"
-             Title="StopMapPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:vm="clr-namespace:TransiTrack.ViewModels"
+             xmlns:local="clr-namespace:TransiTrack.Views.Stops"
+             x:Class="TransiTrack.Views.Stops.StopMapPage"
+             x:DataType="local:StopMapPage"
+             Title="Détail de l'Arrêt">
+
+    <Grid>
+        <!-- Arrière-plan cartographique simulé -->
+        <BoxView Color="#EAEFEA" />
+        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+            <Label Text="📍" FontSize="60" HorizontalOptions="Center" />
+            <Label Text="Carte interactive de l'arrêt" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+        </VerticalStackLayout>
+
+        <!-- Carte d'information flottante inférieure -->
+        <Border VerticalOptions="End" Margin="16,0,16,24" Padding="16" StrokeShape="RoundRectangle 16" BackgroundColor="White" StrokeThickness="0">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="{Binding Stop.Name}" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                <Label Text="{Binding Stop.Description}" FontSize="13" TextColor="{StaticResource TextSecondary}" />
+                <Button Text="Consulter les passages en direct" Command="{Binding ViewPassagesCommand}" Style="{StaticResource PrimaryButtonStyle}" />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>

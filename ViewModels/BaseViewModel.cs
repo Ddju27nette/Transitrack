@@ -1,15 +1,14 @@
-namespace transitrack.ViewModels;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-public class BaseViewModel : ContentPage
+namespace TransiTrack.ViewModels;
+
+public abstract class BaseViewModel : INotifyPropertyChanged
 {
-	public BaseViewModel()
-	{
-		Content = new VerticalStackLayout
-		{
-			Children = {
-				new Label { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Welcome to .NET MAUI!"
-				}
-			}
-		};
-	}
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected void OnPropertyChanged([CallerMemberName] string? name = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    }
 }

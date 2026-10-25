@@ -1,15 +1,13 @@
-namespace transitrack.Services;
+using TransiTrack.Models;
 
-public class ITransitService : ContentPage
+namespace TransiTrack.Services;
+
+public interface ITransitService
 {
-	public ITransitService()
-	{
-		Content = new VerticalStackLayout
-		{
-			Children = {
-				new Label { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Welcome to .NET MAUI!"
-				}
-			}
-		};
-	}
+    Task<List<BusStop>> GetNearbyStopsAsync();
+    Task<List<BusStop>> GetFavoriteStopsAsync();
+    Task<List<BusPassage>> GetPassagesForStopAsync(string stopId);
+    Task<List<TripHistory>> GetHistoryAsync();
+    Task<bool> SubmitReportAsync(IncidentReport report);
+    Task ToggleFavoriteAsync(string stopId);
 }

@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="transitrack.Views.Profile.ProfilePage"
-             Title="ProfilePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             xmlns:vm="clr-namespace:TransiTrack.ViewModels"
+             x:Class="TransiTrack.Views.Profile.ProfilePage"
+             x:DataType="vm:ProfileViewModel"
+             Title="Profil"
+             BackgroundColor="{StaticResource BackgroundColor}">
+
+    <VerticalStackLayout Padding="24" Spacing="16">
+        <Label Text="{Binding UserName}"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="{StaticResource TextPrimary}" />
+        <Label Text="{Binding UserEmail}"
+               FontSize="15"
+               TextColor="{StaticResource TextSecondary}" />
+        <Label Text="{Binding VersionInfo}"
+               FontSize="12"
+               TextColor="{StaticResource TextSecondary}" />
+        <Button Text="Mode chauffeur"
+                Command="{Binding OpenDriverCommand}"
+                Style="{StaticResource PrimaryButtonStyle}" />
+        <Button Text="Se déconnecter"
+                Command="{Binding LogoutCommand}"
+                Style="{StaticResource PrimaryButtonStyle}" />
     </VerticalStackLayout>
 </ContentPage>
