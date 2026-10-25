@@ -1,22 +1,19 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TransiTrack.Models;
-using TransiTrack.Services;
 using TransiTrack.Views.Stops;
 
 namespace TransiTrack.ViewModels;
 
 public class FavoritesViewModel : BaseViewModel
 {
-    private readonly ITransitService _transitService;
     public ObservableCollection<BusStop> Favorites { get; } = new();
 
     public ICommand LoadFavoritesCommand { get; }
     public ICommand SelectStopCommand { get; }
 
-    public FavoritesViewModel(ITransitService transitService)
+    public FavoritesViewModel()
     {
-        _transitService = transitService;
         LoadFavoritesCommand = new Command(async () => await LoadFavoritesAsync());
         SelectStopCommand = new Command<BusStop>(async (stop) =>
         {
@@ -24,21 +21,24 @@ public class FavoritesViewModel : BaseViewModel
             var navParams = new Dictionary<string, object> { { "Stop", stop } };
             await Shell.Current.GoToAsync(nameof(StopPassagesPage), navParams);
         });
+
+        _ = LoadFavoritesAsync();
     }
 
-    public async Task LoadFavoritesAsync()
+    public Task LoadFavoritesAsync()
     {
         IsBusy = true;
         try
         {
-            var list = await _transitService.GetFavoriteStopsAsync();
             Favorites.Clear();
-            foreach (var item in list)
-                Favorites.Add(item);
+            Favorites.Add(new BusStop { Id = "1", Name = "Carrefour Ndokoti", Description = "Axe Bassa - Rond Point", IsFavorite = true, Distance = "80 m" });
+            Favorites.Add(new BusStop { Id = "2", Name = "Gare Bessengue", Description = "Boulevard de la Liberté", IsFavorite = true, Distance = "320 m" });
         }
         finally
         {
             IsBusy = false;
         }
+
+        return Task.CompletedTask;
     }
 }

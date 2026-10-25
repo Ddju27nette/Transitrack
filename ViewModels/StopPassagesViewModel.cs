@@ -1,13 +1,11 @@
 using System.Collections.ObjectModel;
 using TransiTrack.Models;
-using TransiTrack.Services;
 
 namespace TransiTrack.ViewModels;
 
 [QueryProperty(nameof(Stop), "Stop")]
 public class StopPassagesViewModel : BaseViewModel
 {
-    private readonly ITransitService _transitService;
     private BusStop _stop = new();
 
     public BusStop Stop
@@ -22,17 +20,17 @@ public class StopPassagesViewModel : BaseViewModel
 
     public ObservableCollection<BusPassage> Passages { get; } = new();
 
-    public StopPassagesViewModel(ITransitService transitService)
+    public StopPassagesViewModel()
     {
-        _transitService = transitService;
     }
 
-    private async void LoadPassages(string stopId)
+    private void LoadPassages(string stopId)
     {
         IsBusy = true;
-        var list = await _transitService.GetPassagesForStopAsync(stopId);
         Passages.Clear();
-        foreach (var p in list) Passages.Add(p);
+        Passages.Add(new BusPassage { LineCode = "L10", Destination = "Bonamoussadi", MinutesRemaining = 4, CrowdLevel = "Faible" });
+        Passages.Add(new BusPassage { LineCode = "L03", Destination = "Akwa", MinutesRemaining = 11, CrowdLevel = "Modéré" });
+        Passages.Add(new BusPassage { LineCode = "L17", Destination = "Ndogbong", MinutesRemaining = 19, CrowdLevel = "Saturé" });
         IsBusy = false;
     }
 }

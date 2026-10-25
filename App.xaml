@@ -1,24 +1,14 @@
-﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TransiTrack.App">
+             xmlns:local="clr-namespace:transitrack"
+             x:Class="transitrack.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="PrimaryColor">#0D6EFD</Color>
-            <Color x:Key="SuccessColor">#198754</Color>
-            <Color x:Key="WarningColor">#FFC107</Color>
-            <Color x:Key="DangerColor">#DC3545</Color>
-            <Color x:Key="BackgroundColor">#F8F9FA</Color>
-            <Color x:Key="TextPrimary">#212529</Color>
-            <Color x:Key="TextSecondary">#6C757D</Color>
-
-            <Style TargetType="Button" x:Key="PrimaryBtnStyle">
-                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="HeightRequest" Value="48" />
-                <Setter Property="FontAttributes" Value="Bold" />
-            </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

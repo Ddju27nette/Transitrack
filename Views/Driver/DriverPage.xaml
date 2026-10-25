@@ -3,41 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:TransiTrack.ViewModels"
              x:Class="TransiTrack.Views.Driver.DriverPage"
-             Title="Espace Chauffeur"
-             BackgroundColor="{StaticResource BackgroundColor}">
+             x:DataType="vm:DriverViewModel"
+             Title="Espace Chauffeur">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="16">
-            <Border BackgroundColor="#E8F0FE" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="16">
-                <VerticalStackLayout Spacing="6">
-                    <Label Text="Prise de service Chauffeur" FontAttributes="Bold" FontSize="18" TextColor="{StaticResource PrimaryColor}" />
-                    <Label Text="Renseignez le matricule de votre véhicule pour émettre votre position aux usagers et régulateurs." 
-                           FontSize="13" TextColor="{StaticResource TextSecondary}" />
-                </VerticalStackLayout>
-            </Border>
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="16">
 
-            <Label Text="Agence de transport" FontAttributes="Bold" />
-            <Border Stroke="#DEE2E6" StrokeShape="RoundRectangle 10" Padding="10,0" BackgroundColor="White">
-                <Picker ItemsSource="{Binding Agencies}" SelectedItem="{Binding SelectedAgency}" HeightRequest="46" />
-            </Border>
+            <!-- 1. ÉCRAN DE CONNEXION CHAUFFEUR (Si non connecté) -->
+            <VerticalStackLayout Spacing="14" IsVisible="{Binding IsNotAuthenticated}">
+                <Label Text="Portail Conducteurs" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
+                <Label Text="Connectez-vous pour diffuser la position de votre véhicule." TextColor="Gray" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
 
-            <Label Text="Matricule du véhicule" FontAttributes="Bold" />
-            <Border Stroke="#DEE2E6" StrokeShape="RoundRectangle 10" Padding="12,2" BackgroundColor="White">
-                <Entry Placeholder="Ex: LT-458-EB" Text="{Binding Registration}" HeightRequest="46" />
-            </Border>
+                <Entry Placeholder="Code Chauffeur ou Matricule" Text="{Binding DriverCode}" />
+                <Entry Placeholder="Mot de passe" IsPassword="True" Text="{Binding Password}" />
 
-            <Label Text="Ligne desservie" FontAttributes="Bold" />
-            <Border Stroke="#DEE2E6" StrokeShape="RoundRectangle 10" Padding="10,0" BackgroundColor="White">
-                <Picker ItemsSource="{Binding Lines}" SelectedItem="{Binding SelectedLine}" HeightRequest="46" />
-            </Border>
+                <Button Text="Se connecter" 
+                        Command="{Binding LoginDriverCommand}"
+                        BackgroundColor="#2E7D32" 
+                        TextColor="White" />
+            </VerticalStackLayout>
 
-            <!-- Statut de l'émission -->
-            <Border Margin="0,10,0,0" Padding="16" StrokeShape="RoundRectangle 12" BackgroundColor="White" StrokeThickness="0">
-                <Label Text="{Binding StatusText}" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
-            </Border>
+            <!-- 2. TABLEAU DE BORD DE COURSE (Si connecté) -->
+            <VerticalStackLayout Spacing="14" IsVisible="{Binding IsAuthenticated}">
+                <Grid ColumnDefinitions="*, Auto">
+                    <Label Text="Session Chauffeur Active" FontSize="18" FontAttributes="Bold" VerticalOptions="Center"/>
+                    <Button Grid.Column="1" Text="Déconnexion" Command="{Binding LogoutDriverCommand}" BackgroundColor="#D32F2F" TextColor="White" HeightRequest="36" />
+                </Grid>
 
-            <Button Text="{Binding ActionBtnText}" Command="{Binding ToggleTripCommand}" 
-                    Style="{StaticResource PrimaryBtnStyle}" Margin="0,10,0,0" />
+                <Label Text="Agence :" FontAttributes="Bold" />
+                <Picker ItemsSource="{Binding Agencies}" SelectedItem="{Binding SelectedAgency}" />
+
+                <Label Text="Ligne :" FontAttributes="Bold" />
+                <Picker ItemsSource="{Binding Lines}" SelectedItem="{Binding SelectedLine}" />
+
+                <Label Text="Matricule du Bus :" FontAttributes="Bold" />
+                <Entry Text="{Binding Registration}" Placeholder="Ex: LT-450-AA" />
+
+                <Frame BackgroundColor="#F5F5F5" BorderColor="#CCCCCC" CornerRadius="8" Padding="12">
+                    <Label Text="{Binding StatusText}" FontAttributes="Bold" HorizontalOptions="Center" />
+                </Frame>
+
+                <Button Text="{Binding ActionBtnText}" 
+                        Command="{Binding ToggleTripCommand}"
+                        BackgroundColor="{Binding IsDriving, Converter={StaticResource BooleanToObjectConverter}}" 
+                        TextColor="White" 
+                        HeightRequest="48" />
+            </VerticalStackLayout>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

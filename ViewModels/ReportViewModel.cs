@@ -32,13 +32,12 @@ public class ReportViewModel : BaseViewModel
     {
         if (string.IsNullOrWhiteSpace(LocationName))
         {
-            await Shell.Current.DisplayAlert("Précision", "Veuillez renseigner le lieu ou l'axe concerné.", "OK");
+            if (Shell.Current != null)
+                await Shell.Current.DisplayAlert("Précision", "Veuillez renseigner le lieu ou l'axe concerné.", "OK");
             return;
         }
 
         await _trackingService.ConnectAsync();
-
-        // Récupération de la position courante pour l'incident
         var location = await Geolocation.Default.GetLastKnownLocationAsync();
 
         var incident = new TrafficIncident
@@ -52,7 +51,9 @@ public class ReportViewModel : BaseViewModel
 
         await _trackingService.SendIncidentAsync(incident);
 
-        await Shell.Current.DisplayAlert("Signalement transmis", "Votre alerte a été partagée aux usagers et aux agences.", "Merci");
+        if (Shell.Current != null)
+            await Shell.Current.DisplayAlert("Signalement transmis", "Votre alerte a été partagée aux usagers et aux agences.", "Merci");
+
         LocationName = string.Empty;
         Description = string.Empty;
         OnPropertyChanged(nameof(LocationName));
