@@ -1,0 +1,56 @@
+@baseUrl = http://localhost:5080
+@driverKey = {{$processEnv Transit__DriverApiKey}}
+@moderatorKey = {{$processEnv Transit__ModeratorApiKey}}
+@reportId = replace-with-report-id-from-create
+
+### Health
+GET {{baseUrl}}/health
+
+### OpenAPI
+GET {{baseUrl}}/openapi/v1.json
+
+### Initial live vehicles
+GET {{baseUrl}}/api/v1/vehicles?cityId=douala
+
+### Vehicle not found
+GET {{baseUrl}}/api/v1/vehicles/not-a-vehicle
+
+### Start a driver trip (demo prototype only)
+POST {{baseUrl}}/api/v1/trips
+X-Driver-Key: {{driverKey}}
+Content-Type: application/json
+
+{
+  "agencyName": "Agence Demo",
+  "routeName": "L10",
+  "vehiclePlate": "LT-458-EB",
+  "cityId": "douala",
+  "destinationName": "Bonamoussadi",
+  "destinationLatitude": 4.0922,
+  "destinationLongitude": 9.735
+}
+
+### Get the created trip (use the tripId returned above)
+GET {{baseUrl}}/api/v1/trips/replace-with-trip-id
+
+### Create a passenger incident report
+POST {{baseUrl}}/api/v1/reports
+Content-Type: application/json
+
+{
+  "incidentType": "Traffic",
+  "locationDescription": "Boulevard de la Liberté",
+  "latitude": 4.0511,
+  "longitude": 9.7085,
+  "details": "Circulation ralentie"
+}
+
+### Get one report (use the id returned above)
+GET {{baseUrl}}/api/v1/reports/replace-with-report-id
+
+### List reports
+GET {{baseUrl}}/api/v1/reports
+
+### Validate a submitted report and recalculate nearby ETAs
+POST {{baseUrl}}/api/v1/reports/{{reportId}}/validate
+X-Moderator-Key: {{moderatorKey}}

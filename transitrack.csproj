@@ -39,6 +39,7 @@
 		<Compile Remove="Platforms\iOS\**" />
 		<Compile Remove="Platforms\MacCatalyst\**" />
 		<Compile Remove="Platforms\Tizen\**" />
+		<Compile Remove="TransiTrack.Api\**\*.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
